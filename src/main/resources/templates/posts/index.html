@@ -18,6 +18,7 @@
   <body>
     <div class="topnav">
       <a class="active" href="/homepage"><i class="fa-solid fa-house"></i> Home</a>
+      <a class="" href="/requests"><i class="fa-solid fa-envelope"></i>Requests</a>
       <a class="" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       <div sec:authorize="isAuthenticated()">
        <a th:href="@{/users/{id}(id=${currentUserId})}"><i class="fa-solid fa-user"></i> <span class="name" sec:authentication="name"></span> </a>
@@ -31,13 +32,6 @@
         <!-- <img > -->
         <div class ="profilePicture">
          
-        </div>
-        Signed in as 
-        <a th:href="@{/users/{id}(id=${currentUserId})}">
-          <!-- <img th:src="@{${users[{currentUserId}].picture}}" width="50" height="50"/> -->
-          <span class="name" sec:authentication="name"></span>
-        </a>
-      </div>
 
       <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
         <p>Create post: 
@@ -53,7 +47,6 @@
       </form>
       <div>
         <ul class="posts" th:each="post: ${posts}">
-          <img th:src="@{${post.photos}}" width="120"/>
 
           <div class="profilePicture">
             <img id="PFP" th:src="@{${users[post.user_id-1].picture}}" width="50" height="50"/>
@@ -64,8 +57,8 @@
           
             <img th:src="@{${post.photos}}" />
 
+            <h3>Likes:</h3>
             <p th:text="${post.likes}" >
-              <strong>likes</strong>
               <form class="post-item" action="#" th:action="@{/likes}" th:object="${post}" method="post"  >
   
                 <input type="hidden" class="form-control" th:value="${post.id}" th:attr="name='post_id'"/>
