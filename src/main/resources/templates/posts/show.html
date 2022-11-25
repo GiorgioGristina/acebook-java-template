@@ -11,8 +11,12 @@
   </head>
   <body>
     <div class="topnav">
-      <a class="active" href="/posts">Home</a>
-    </div>
+      <a class="active" href="/homepage"><i class="fa-solid fa-house"></i> Home</a>
+      <a class="" href="/requests"><i class="fa-solid fa-envelope"></i>Requests</a>
+      <a class="" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      <div sec:authorize="isAuthenticated()">
+       <a th:href="@{/users/{id}(id=${currentUserId})}"><i class="fa-solid fa-user"></i> <span class="name" sec:authentication="name"></span> </a>
+      </div>
     <div class="container form-signup" sec:authorize="isAuthenticated()">
       <h2 class="posts-heading">
         Post by <span class="name" th:text="${name}"></span>

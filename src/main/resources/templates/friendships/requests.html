@@ -6,10 +6,20 @@
   <head lang="en">
     <meta charset="UTF-8" />
     <title>Acebook</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/e6fe8c10b9.js" crossorigin="anonymous"></script>
     <link href="/posts.css" rel="stylesheet" type="text/css" />
     <link href="/navbar.css" rel="stylesheet" />
   </head>
   <body>
+    <div class="topnav">
+      <a class="" href="/posts"><i class="fa-solid fa-left"></i> Back</a>
+      <a class="active" href="/requests"><i class="fa-solid fa-envelope"></i>Requests</a>
+      <a class="" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      <div sec:authorize="isAuthenticated()">
+       <a th:href="@{/users/{id}(id=${currentUserId})}"><i class="fa-solid fa-user"></i> <span class="name" sec:authentication="name"></span> </a>
+      </div>
     <div>
       <ul class="posts" th:each="friendship: ${friendships}">
         <li>
